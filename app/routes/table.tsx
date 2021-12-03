@@ -5,6 +5,7 @@ import {
   Column,
   SortingRule,
   usePagination,
+  CellProps,
 } from 'react-table';
 import { MetaFunction, LinksFunction } from 'remix';
 
@@ -25,6 +26,10 @@ interface TableProps<D extends object> {
   data: D[];
   pageCount?: number;
   onChange?: (sort: SortingRule<D>[]) => void;
+}
+
+function DefaultCellRenderer(props: CellProps<object>) {
+  return props.value ?? 'N/A';
 }
 
 function Table<D extends object = {}>({
@@ -59,6 +64,9 @@ function Table<D extends object = {}>({
       stateReducer(newState, action) {
         console.log(action, newState);
         return newState;
+      },
+      defaultColumn: {
+        Cell: DefaultCellRenderer,
       },
     },
     useSortBy,
@@ -143,7 +151,7 @@ export default function TablePage() {
       {
         Header: 'Cost',
         accessor: 'cost',
-        minWidth: 300,
+        width: 300,
         Cell: ({ value }) => formatter.format(value),
         Footer() {
           return 7;
