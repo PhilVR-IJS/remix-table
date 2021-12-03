@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Links,
   LiveReload,
@@ -8,13 +8,13 @@ import {
   ScrollRestoration,
   useCatch,
   Link,
-  NavLink
-} from "remix";
-import type { LinksFunction } from "remix";
+  NavLink,
+} from 'remix';
+import type { LinksFunction } from 'remix';
 
-import deleteMeRemixStyles from "~/styles/demos/remix.css";
-import globalStylesUrl from "~/styles/global.css";
-import darkStylesUrl from "~/styles/dark.css";
+import deleteMeRemixStyles from '~/styles/demos/remix.css';
+import globalStylesUrl from '~/styles/global.css';
+import darkStylesUrl from '~/styles/dark.css';
 
 /**
  * The `links` export is a function that returns an array of objects that map to
@@ -26,13 +26,13 @@ import darkStylesUrl from "~/styles/dark.css";
  */
 export let links: LinksFunction = () => {
   return [
-    { rel: "stylesheet", href: globalStylesUrl },
+    { rel: 'stylesheet', href: globalStylesUrl },
     {
-      rel: "stylesheet",
+      rel: 'stylesheet',
       href: darkStylesUrl,
-      media: "(prefers-color-scheme: dark)"
+      media: '(prefers-color-scheme: dark)',
     },
-    { rel: "stylesheet", href: deleteMeRemixStyles }
+    { rel: 'stylesheet', href: deleteMeRemixStyles },
   ];
 };
 
@@ -53,7 +53,7 @@ export default function App() {
 
 function Document({
   children,
-  title
+  title,
 }: {
   children: React.ReactNode;
   title?: string;
@@ -71,7 +71,7 @@ function Document({
         {children}
         <ScrollRestoration />
         <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
+        {process.env.NODE_ENV === 'development' && <LiveReload />}
       </body>
     </html>
   );
@@ -88,13 +88,7 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
           <nav aria-label="Main navigation" className="remix-app__header-nav">
             <ul>
               <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <a href="https://remix.run/docs">Remix Docs</a>
-              </li>
-              <li>
-                <a href="https://github.com/remix-run/remix">GitHub</a>
+                <Link to="/table">Table</Link>
               </li>
             </ul>
           </nav>
@@ -166,7 +160,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   );
 }
 
-function RemixLogo(props: React.ComponentPropsWithoutRef<"svg">) {
+function RemixLogo(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       viewBox="0 0 659 165"
